@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "customizable-drones",
+	"version": "${version}",
+	"name": "Customizable Drones",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/customizable-drones/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.grooze.drone.CustomizableDrones"
+		],
+		"client": [
+			"com.grooze.drone.CustomizableDronesClient"
+		],
+		"fabric-datagen": [
+			"com.grooze.drone.CustomizableDronesDataGenerator"
+		]
+	},
+	"mixins": [
+		"customizable-drones.mixins.json",
+		{
+			"config": "customizable-drones.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
