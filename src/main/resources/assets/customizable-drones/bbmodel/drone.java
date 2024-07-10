@@ -1,3 +1,7 @@
+import net.minecraft.util.math.RotationAxis;
+
+import static net.minecraft.util.math.MathConstants.PI;
+
 // Made with Blockbench 4.10.4
 // Exported for Minecraft version 1.17+ for Yarn
 // Paste this class into your mod and generate all required imports
@@ -94,6 +98,7 @@ public class drone extends EntityModel<Drone> {
 	}
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+
 		root.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
 }

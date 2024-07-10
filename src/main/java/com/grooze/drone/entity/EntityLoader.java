@@ -12,7 +12,9 @@ import static com.grooze.drone.util.RegisterFunctions.registerEntity;
 
 public class EntityLoader {
 
-    public static final EntityType<Drone> DRONE = registerEntity("drone", EntityType.Builder.create(Drone::new, SpawnGroup.MISC).dimensions(0.5f,0.5f));
+    public static final EntityType<Drone> DRONE = registerEntity("drone",
+            EntityType.Builder.create(Drone::new, SpawnGroup.MISC)
+                    .dimensions(3f,1.5f));
     public static void init(){
         SkeletonEntity.createAbstractSkeletonAttributes();
         /*
