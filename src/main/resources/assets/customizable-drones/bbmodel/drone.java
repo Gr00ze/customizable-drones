@@ -1,7 +1,3 @@
-import net.minecraft.util.math.RotationAxis;
-
-import static net.minecraft.util.math.MathConstants.PI;
-
 // Made with Blockbench 4.10.4
 // Exported for Minecraft version 1.17+ for Yarn
 // Paste this class into your mod and generate all required imports
@@ -38,9 +34,9 @@ public class drone extends EntityModel<Drone> {
 		ModelPartData cabin = root.addChild("cabin", ModelPartBuilder.create().uv(0, 0).cuboid(-8.0F, -2.0F, -8.0F, 16.0F, 1.0F, 16.0F, new Dilation(0.0F))
 		.uv(48, 0).cuboid(-14.0F, -2.0F, -6.0F, 6.0F, 1.0F, 12.0F, new Dilation(0.0F))
 		.uv(28, 44).cuboid(8.0F, -2.0F, -6.0F, 6.0F, 1.0F, 12.0F, new Dilation(0.0F))
-		.uv(0, 43).cuboid(-3.0F, -4.0F, -5.0F, 9.0F, 2.0F, 11.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		.uv(1, 44).cuboid(-3.0F, -4.0F, -5.0F, 9.0F, 2.0F, 10.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-		ModelPartData cube_r1 = cabin.addChild("cube_r1", ModelPartBuilder.create().uv(0, 30).cuboid(0.0F, 0.0F, -5.0F, 13.0F, 2.0F, 11.0F, new Dilation(0.0F)), ModelTransform.of(6.0F, -4.0F, 0.0F, 0.0F, 0.0F, -1.0908F));
+		ModelPartData cube_r1 = cabin.addChild("cube_r1", ModelPartBuilder.create().uv(1, 31).cuboid(0.0F, 0.0F, -5.0F, 13.0F, 2.0F, 10.0F, new Dilation(0.0F)), ModelTransform.of(6.0F, -4.0F, 0.0F, 0.0F, 0.0F, -1.0908F));
 
 		ModelPartData cube_r2 = cabin.addChild("cube_r2", ModelPartBuilder.create().uv(59, 66).cuboid(-9.0F, 0.0F, -3.0F, 8.0F, 1.0F, 7.0F, new Dilation(0.0F)), ModelTransform.of(10.0F, -1.0F, -7.0F, 1.5708F, 0.0F, 1.5708F));
 
@@ -56,9 +52,10 @@ public class drone extends EntityModel<Drone> {
 
 		ModelPartData cube_r8 = cabin.addChild("cube_r8", ModelPartBuilder.create().uv(0, 17).cuboid(-13.0F, -1.0F, -6.0F, 13.0F, 1.0F, 12.0F, new Dilation(0.0F)), ModelTransform.of(14.0F, -2.0F, 0.0F, 0.0F, 0.0F, 1.5708F));
 
-		ModelPartData sterzo = cabin.addChild("sterzo", ModelPartBuilder.create().uv(0, 0).cuboid(-0.5F, -1.0F, -2.5F, 1.0F, 2.0F, 5.0F, new Dilation(0.0F))
-		.uv(0, 7).cuboid(-0.5F, -2.0F, -3.5F, 1.0F, 4.0F, 1.0F, new Dilation(0.0F))
+		ModelPartData sterzo = cabin.addChild("sterzo", ModelPartBuilder.create().uv(0, 7).cuboid(-0.5F, -2.0F, -4.5F, 1.0F, 4.0F, 1.0F, new Dilation(0.0F))
 		.uv(0, 0).cuboid(-0.5F, -2.0F, 2.5F, 1.0F, 4.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(-4.5F, -9.0F, 0.5F, 0.0F, 0.0F, -0.3054F));
+
+		ModelPartData cube_r9 = sterzo.addChild("cube_r9", ModelPartBuilder.create().uv(3, 3).cuboid(-1.0F, -6.0F, -3.0F, 1.0F, 6.0F, 2.0F, new Dilation(0.0F)), ModelTransform.of(0.5F, 2.0F, -3.5F, -1.5708F, 0.0F, 0.0F));
 
 		ModelPartData arm = root.addChild("arm", ModelPartBuilder.create(), ModelTransform.pivot(-14.0156F, -1.5F, 14.3085F));
 
@@ -66,23 +63,23 @@ public class drone extends EntityModel<Drone> {
 
 		ModelPartData arm_r1 = arm.addChild("arm_r1", ModelPartBuilder.create().uv(0, 57).cuboid(-17.0F, -1.0F, -2.0F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(10.0156F, 1.5F, -9.3085F, 0.0F, 0.7854F, 0.0F));
 
-		ModelPartData propeller = arm.addChild("propeller", ModelPartBuilder.create().uv(44, 66).cuboid(-18.0F, -7.0F, -7.0F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(14.0156F, 1.5F, 4.6915F));
+		ModelPartData propeller = arm.addChild("propeller", ModelPartBuilder.create().uv(44, 66).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.4844F, -4.5F, 4.1915F));
 
 		ModelPartData arm2 = root.addChild("arm2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-		ModelPartData motor_r2 = arm2.addChild("motor_r2", ModelPartBuilder.create().uv(23, 75).cuboid(-19.0F, -5.0F, -3.0F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(30.0F, 0.0F, 6.0F, 0.0F, 0.7854F, 0.0F));
+		ModelPartData motor_r2 = arm2.addChild("motor_r2", ModelPartBuilder.create().uv(23, 75).cuboid(-2.5F, -2.5F, -2.5F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(17.9792F, -2.5F, 17.3137F, 0.0F, 0.7854F, 0.0F));
 
 		ModelPartData arm_r2 = arm2.addChild("arm_r2", ModelPartBuilder.create().uv(64, 18).cuboid(-23.364F, -1.0F, -1.2929F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 2.3562F, 0.0F));
 
 		ModelPartData propeller2 = arm2.addChild("propeller2", ModelPartBuilder.create().uv(0, 65).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(18.5F, -6.0F, 18.5F));
 
-		ModelPartData arm3 = root.addChild("arm3", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		ModelPartData arm3 = root.addChild("arm3", ModelPartBuilder.create(), ModelTransform.pivot(13.9948F, -1.5F, -14.4948F));
 
-		ModelPartData motor_r3 = arm3.addChild("motor_r3", ModelPartBuilder.create().uv(78, 37).cuboid(-19.0F, -5.0F, -3.0F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(30.0F, 0.0F, -30.0F, 0.0F, 0.7854F, 0.0F));
+		ModelPartData motor_r3 = arm3.addChild("motor_r3", ModelPartBuilder.create().uv(78, 37).cuboid(-19.0F, -5.0F, -3.0F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(16.0052F, 1.5F, -15.5052F, 0.0F, 0.7854F, 0.0F));
 
-		ModelPartData arm_r3 = arm3.addChild("arm_r3", ModelPartBuilder.create().uv(0, 61).cuboid(-23.364F, -1.0F, -1.2929F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, -2.3562F, 0.0F));
+		ModelPartData arm_r3 = arm3.addChild("arm_r3", ModelPartBuilder.create().uv(0, 61).cuboid(-23.364F, -1.0F, -1.2929F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(-13.9948F, 1.5F, 14.4948F, 0.0F, -2.3562F, 0.0F));
 
-		ModelPartData propeller3 = arm3.addChild("propeller3", ModelPartBuilder.create().uv(64, 22).cuboid(-37.5F, -1.0F, -4.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(18.5F, -6.0F, -19.5F));
+		ModelPartData propeller3 = arm3.addChild("propeller3", ModelPartBuilder.create().uv(29, 57).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(4.5052F, -4.5F, -5.0052F));
 
 		ModelPartData arm4 = root.addChild("arm4", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
@@ -90,7 +87,7 @@ public class drone extends EntityModel<Drone> {
 
 		ModelPartData arm_r4 = arm4.addChild("arm_r4", ModelPartBuilder.create().uv(61, 14).cuboid(-23.364F, -1.0F, -1.2929F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, -0.7854F, 0.0F));
 
-		ModelPartData propeller4 = arm4.addChild("propeller4", ModelPartBuilder.create().uv(29, 57).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(18.5F, -6.0F, -19.5F));
+		ModelPartData propeller4 = arm4.addChild("propeller4", ModelPartBuilder.create().uv(64, 22).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(-18.5F, -6.0F, -17.5F));
 		return TexturedModelData.of(modelData, 128, 128);
 	}
 	@Override
@@ -98,7 +95,6 @@ public class drone extends EntityModel<Drone> {
 	}
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-
 		root.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
 }
