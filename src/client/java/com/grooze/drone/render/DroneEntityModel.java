@@ -1,15 +1,14 @@
 package com.grooze.drone.render;
 
-import com.grooze.drone.entity.Drone;
+import com.grooze.drone.entity.DroneEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.util.math.MatrixStack;
-import org.joml.Vector3f;
 
 import static net.minecraft.util.math.MathConstants.PI;
 
-public class DroneModel extends EntityModel<Drone> {
+public class DroneEntityModel extends EntityModel<DroneEntity> {
     private final ModelPart root;
     private final ModelPart cabin;
     private final ModelPart sterzo;
@@ -22,7 +21,7 @@ public class DroneModel extends EntityModel<Drone> {
     private final ModelPart arm4;
     private final ModelPart propeller4;
 
-    public DroneModel(ModelPart model){
+    public DroneEntityModel(ModelPart model){
         this.root = model.getChild("root");
         this.cabin = root.getChild("cabin");
         this.sterzo = cabin.getChild("sterzo");
@@ -103,33 +102,39 @@ public class DroneModel extends EntityModel<Drone> {
         return TexturedModelData.of(modelData, 128, 128);
     }
     @Override
-    public void setAngles(Drone entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(DroneEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
         System.out.println("Angles ven chimato");
     }
 
     @Override
+    public void animateModel(DroneEntity entity, float limbAngle, float limbDistance, float tickDelta) {
 
-    public void animateModel(Drone entity, float limbAngle, float limbDistance, float tickDelta) {
-        propeller.resetTransform();
-        root.yaw = - entity.getYaw() * PI/180;
+        root.yaw = entity.getYaw() * PI/180 + PI/2;
         if(entity.hasPlayerRider()){
             animatePropeller();
         }
 
     }
 
+
+
+
     private void animatePropeller() {
+
+
         float speed = PI/180;
         propeller.yaw+=speed;
 
+        /*
         propeller2.yaw+=speed;
-        //propeller3.yaw+=speed;
+        propeller3.yaw+=speed;
         propeller4.yaw+=speed;
+
+         */
     }
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-
         root.render(matrices, vertices, light, overlay, color);
     }
 

@@ -63,7 +63,7 @@ public class drone extends EntityModel<Drone> {
 
 		ModelPartData arm_r1 = arm.addChild("arm_r1", ModelPartBuilder.create().uv(0, 57).cuboid(-17.0F, -1.0F, -2.0F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(10.0156F, 1.5F, -9.3085F, 0.0F, 0.7854F, 0.0F));
 
-		ModelPartData propeller = arm.addChild("propeller", ModelPartBuilder.create().uv(44, 66).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.4844F, -4.5F, 4.1915F));
+		ModelPartData propeller = arm.addChild("propeller", ModelPartBuilder.create().uv(44, 66).cuboid(-1.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.4844F, -4.5F, 4.1915F));
 
 		ModelPartData arm2 = root.addChild("arm2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
@@ -71,7 +71,7 @@ public class drone extends EntityModel<Drone> {
 
 		ModelPartData arm_r2 = arm2.addChild("arm_r2", ModelPartBuilder.create().uv(64, 18).cuboid(-23.364F, -1.0F, -1.2929F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, 2.3562F, 0.0F));
 
-		ModelPartData propeller2 = arm2.addChild("propeller2", ModelPartBuilder.create().uv(0, 65).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(18.5F, -6.0F, 18.5F));
+		ModelPartData propeller2 = arm2.addChild("propeller2", ModelPartBuilder.create().uv(0, 65).cuboid(-0.5F, -1.0F, -7.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(18.5F, -6.0F, 18.5F));
 
 		ModelPartData arm3 = root.addChild("arm3", ModelPartBuilder.create(), ModelTransform.pivot(13.9948F, -1.5F, -14.4948F));
 
@@ -79,7 +79,7 @@ public class drone extends EntityModel<Drone> {
 
 		ModelPartData arm_r3 = arm3.addChild("arm_r3", ModelPartBuilder.create().uv(0, 61).cuboid(-23.364F, -1.0F, -1.2929F, 18.0F, 1.0F, 3.0F, new Dilation(0.0F)), ModelTransform.of(-13.9948F, 1.5F, 14.4948F, 0.0F, -2.3562F, 0.0F));
 
-		ModelPartData propeller3 = arm3.addChild("propeller3", ModelPartBuilder.create().uv(29, 57).cuboid(-0.5F, -1.0F, -6.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(4.5052F, -4.5F, -5.0052F));
+		ModelPartData propeller3 = arm3.addChild("propeller3", ModelPartBuilder.create().uv(29, 57).cuboid(-0.5F, -1.0F, -5.5F, 1.0F, 2.0F, 13.0F, new Dilation(0.0F)), ModelTransform.pivot(4.5052F, -4.5F, -5.0052F));
 
 		ModelPartData arm4 = root.addChild("arm4", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
