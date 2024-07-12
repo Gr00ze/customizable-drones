@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 public class Events {
 
     public static void init(){
-        UseEntityCallback.EVENT.register(Events::useEntity);
-        UseBlockCallback.EVENT.register(Events::useBlock);
+        //UseEntityCallback.EVENT.register(Events::useEntity);
+        //UseBlockCallback.EVENT.register(Events::useBlock);
         //UseItemCallback.EVENT.register(Events::useItem);
 
     }
@@ -38,6 +38,8 @@ public class Events {
 
         return ActionResult.PASS;
     }
+
+
 
 
 }
