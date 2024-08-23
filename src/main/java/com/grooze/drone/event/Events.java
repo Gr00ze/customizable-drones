@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -19,6 +20,7 @@ public class Events {
         //UseEntityCallback.EVENT.register(Events::useEntity);
         //UseBlockCallback.EVENT.register(Events::useBlock);
         //UseItemCallback.EVENT.register(Events::useItem);
+
 
     }
 

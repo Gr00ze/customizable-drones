@@ -2,8 +2,10 @@ package com.grooze.drone;
 
 import com.grooze.drone.entity.EntityLoader;
 import com.grooze.drone.event.Events;
+import com.grooze.drone.event.Network;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +24,8 @@ public class CustomizableDrones implements ModInitializer {
 		LOGGER.info("Initializing...");
 		EntityLoader.init();
 		Events.init();
+		Network.init();
+
 
 	}
 
