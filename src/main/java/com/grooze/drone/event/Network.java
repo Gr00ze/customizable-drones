@@ -1,7 +1,9 @@
 package com.grooze.drone.event;
 
+import com.grooze.drone.entity.DroneEntity;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.Entity;
 
 
 public class Network {
@@ -11,7 +13,13 @@ public class Network {
         ServerPlayNetworking.registerGlobalReceiver(DroneActionPayload.ID, (payload, context) -> {
             context.server().execute(() -> {
                 System.out.printf("Dati arrivati: id %d  A %d\n", payload.entityId(), payload.action());
+                Entity entity = context.player().getServerWorld().getEntityById(payload.entityId());
 
+                // TO DO server check
+
+                if (entity instanceof DroneEntity droneEntity){
+                    droneEntity.move(payload.action());
+                }
             });
         });
     }

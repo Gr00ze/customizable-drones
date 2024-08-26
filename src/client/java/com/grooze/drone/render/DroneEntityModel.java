@@ -111,7 +111,7 @@ public class DroneEntityModel extends EntityModel<DroneEntity> {
 
         root.yaw = entity.getYaw() * PI/180 + PI/2;
         if(entity.hasPlayerRider()){
-            animatePropeller();
+            animatePropeller(entity.getY()+100F);
         }
 
     }
@@ -119,23 +119,18 @@ public class DroneEntityModel extends EntityModel<DroneEntity> {
 
 
 
-    private void animatePropeller() {
+    private void animatePropeller(double speed) {
 
 
-        float speed = PI/180;
-        propeller.yaw+=speed;
 
-        /*
-        propeller2.yaw+=speed;
-        propeller3.yaw+=speed;
-        propeller4.yaw+=speed;
-
-         */
+        propeller.yaw+= (float) speed;
+        //propeller4.yaw-=speed;
     }
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
         root.render(matrices, vertices, light, overlay, color);
+
     }
 
 

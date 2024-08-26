@@ -28,13 +28,14 @@ public class ClientEvents {
                 return;
             }
 
-            if(droneUP.wasPressed()){
-                System.out.println("UP");
+            if(droneUP.isPressed()){
+                //System.out.println("UP");
                 ClientNetwork.sendUpPacket(vehicleId);
-            } else if (droneDown.wasPressed()) {
-                System.out.println("DOWN");
+            } else if (droneDown.isPressed()) {
+                //System.out.println("DOWN");
                 ClientNetwork.sendDownPacket(vehicleId);
             }
+                //System.out.println("premuti");
         });
 
     }

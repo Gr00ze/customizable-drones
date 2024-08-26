@@ -10,12 +10,12 @@ public class ClientNetwork {
     }
     public static void sendDownPacket(int id) {
         //da modificare
-        System.out.println("Dati mandati");
+        //System.out.println("Dati mandati");
         ClientPlayNetworking.send(new DroneActionPayload(id,0));
     }
     public static void sendUpPacket(int id) {
         //da modificare
-        System.out.println("Dati mandati");
+        //System.out.println("Dati mandati");
         ClientPlayNetworking.send(new DroneActionPayload(id,1));
     }
 }

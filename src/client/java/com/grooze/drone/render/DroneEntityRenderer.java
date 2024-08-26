@@ -27,12 +27,14 @@ public class DroneEntityRenderer extends EntityRenderer<DroneEntity> {
 
     @Override
     public void render(DroneEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        super.render(entity, yaw, tickDelta, matrices, vertexConsumers, light);
+
+        matrices.push();
         //matrices.multiply(RotationAxis.POSITIVE_X.rotation(PI));
         //matrices.multiply((RotationAxis.POSITIVE_Y.rotation(-entity.getYaw()*PI/180)));
         //matrices.translate(0f,-1.5f,0f);
         model.animateModel(entity,0,0,tickDelta);
         model.render(matrices, vertexConsumers.getBuffer(RenderLayer.getEntityAlpha(TEXTURE)), light, 0, 0);
-
+        matrices.pop();
+        super.render(entity, yaw, tickDelta, matrices, vertexConsumers, light);
     }
 }
