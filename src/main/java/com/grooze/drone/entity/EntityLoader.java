@@ -12,8 +12,11 @@ public class EntityLoader {
     public static final EntityType<DroneEntity> DRONE = registerEntity("drone",
             EntityType.Builder.create(DroneEntity::new, SpawnGroup.MISC)
                     .dimensions(3f,1f));
+
+    public static final EntityType<TestDroneEntity> TEST_DRONE = registerEntity("test_drone",
+            EntityType.Builder.create(TestDroneEntity::new, SpawnGroup.MISC)
+                    .dimensions(3f,1f));
     public static void init(){
-        SkeletonEntity.createAbstractSkeletonAttributes();
         /*
         FabricDefaultAttributeRegistry.register(DRONE, Drone.createLivingAttributes()
                         .add(EntityAttributes.GENERIC_MAX_HEALTH,20)

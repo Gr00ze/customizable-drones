@@ -9,6 +9,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import static net.minecraft.util.math.MathConstants.PI;
 
 public class DroneEntityModel extends EntityModel<DroneEntity> {
+
+    private static final float CONVERSION_FACTOR = PI/180, HALF_PI = PI/2;
     private final ModelPart root;
     private final ModelPart cabin;
     private final ModelPart sterzo;
@@ -103,15 +105,26 @@ public class DroneEntityModel extends EntityModel<DroneEntity> {
     }
     @Override
     public void setAngles(DroneEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-        System.out.println("Angles ven chimato");
+        //Used to reset angles
+        propeller.yaw=0;
+        propeller2.yaw=0;
+        propeller3.yaw=0;
+        propeller4.yaw=0;
     }
 
     @Override
     public void animateModel(DroneEntity entity, float limbAngle, float limbDistance, float tickDelta) {
 
-        root.yaw = entity.getYaw() * PI/180 + PI/2;
-        if(entity.hasPlayerRider()){
-            animatePropeller(entity.getY()+100F);
+
+        //turn left and right
+        root.yaw = entity.getYaw() * CONVERSION_FACTOR + HALF_PI;
+
+        //propellers
+        if(!entity.isOnGround()){
+            animatePropeller(propeller, entity.getY()+100F, tickDelta);
+            animatePropeller(propeller2, -entity.getY()+100F, tickDelta);
+            animatePropeller(propeller3, entity.getY()+100F, tickDelta);
+            animatePropeller(propeller4, -entity.getY()+100F, tickDelta);
         }
 
     }
@@ -119,12 +132,8 @@ public class DroneEntityModel extends EntityModel<DroneEntity> {
 
 
 
-    private void animatePropeller(double speed) {
-
-
-
-        propeller.yaw+= (float) speed;
-        //propeller4.yaw-=speed;
+    private void animatePropeller(ModelPart propeller, double speed, float tickDelta) {
+        propeller.yaw+= (float) (0.1F * speed * tickDelta);
     }
 
     @Override

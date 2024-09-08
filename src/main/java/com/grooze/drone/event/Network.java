@@ -12,7 +12,7 @@ public class Network {
 
         ServerPlayNetworking.registerGlobalReceiver(DroneActionPayload.ID, (payload, context) -> {
             context.server().execute(() -> {
-                System.out.printf("Dati arrivati: id %d  A %d\n", payload.entityId(), payload.action());
+                //System.out.printf("Dati arrivati: id %d  A %d\n", payload.entityId(), payload.action());
                 Entity entity = context.player().getServerWorld().getEntityById(payload.entityId());
 
                 // TO DO server check

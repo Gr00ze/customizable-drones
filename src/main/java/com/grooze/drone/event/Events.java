@@ -1,5 +1,6 @@
 package com.grooze.drone.event;
 
+import com.grooze.drone.entity.TestDroneEntity;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
@@ -20,6 +21,14 @@ public class Events {
         //UseEntityCallback.EVENT.register(Events::useEntity);
         //UseBlockCallback.EVENT.register(Events::useBlock);
         //UseItemCallback.EVENT.register(Events::useItem);
+
+        UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+            if (entity instanceof TestDroneEntity) {
+                System.out.println("Interazione rilevata tramite evento Fabric!");
+                return ActionResult.PASS;
+            }
+            return ActionResult.PASS;
+        });
 
 
     }
