@@ -1,6 +1,7 @@
 package com.grooze.drone.event;
 
 import com.grooze.drone.entity.DroneEntity;
+import com.grooze.drone.entity.TestDroneEntity;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
@@ -18,6 +19,10 @@ public class Network {
                 // TO DO server check
 
                 if (entity instanceof DroneEntity droneEntity){
+                    droneEntity.move(payload.action());
+                }
+
+                if (entity instanceof TestDroneEntity droneEntity){
                     droneEntity.move(payload.action());
                 }
             });

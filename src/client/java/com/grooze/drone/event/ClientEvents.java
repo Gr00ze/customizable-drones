@@ -1,6 +1,7 @@
 package com.grooze.drone.event;
 
 import com.grooze.drone.entity.DroneEntity;
+import com.grooze.drone.entity.TestDroneEntity;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
@@ -22,8 +23,8 @@ public class ClientEvents {
             int vehicleId;
             Entity vehicle = client.player.getControllingVehicle();
             //ottengo l' id che ci serve se è un drone
-            if (vehicle instanceof DroneEntity droneEntity){
-                vehicleId = droneEntity.getId();
+            if (vehicle instanceof DroneEntity || vehicle instanceof TestDroneEntity){
+                vehicleId = vehicle.getId();
             }else{
                 return;
             }

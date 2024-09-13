@@ -2,9 +2,10 @@ package com.grooze.drone.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.ActionResult;
@@ -12,10 +13,13 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import static com.grooze.drone.entity.DroneEntity.TARGET_Y;
 import static com.grooze.drone.util.DebugLog.print;
+import com.grooze.drone.util.MyMathHelper;
 
 public class TestDroneEntity extends Entity {
 
@@ -45,14 +49,51 @@ public class TestDroneEntity extends Entity {
         super.tick();
 
         World world = this.getWorld();
+        boolean isClient = world.isClient;
+        String txtIsClient = isClient?"":"[Server]";
         Box bb = this.getBoundingBox();
 
         List<Entity> inbox = world.getOtherEntities(this,bb);
 
 
+
         //System.out.println(inbox);
-        print(0, inbox.toString());
-        print(1, String.valueOf(noClip));
+        //print(0, inbox.toString());
+        //print(1, String.valueOf(noClip));
+
+
+            //print(2, "Get player passenger: "+this.getFirstPassenger());
+
+            if (this.getFirstPassenger() instanceof PlayerEntity player){
+                Vec3d playerVelocity = player.getVelocity();
+                float playerYaw = player.getHeadYaw();
+                //this.setYaw(playerYaw);
+                double pvx = playerVelocity.x;
+                double pvy = playerVelocity.y;
+                double pvz = playerVelocity.z;
+                double normalizedPlayerYaw = MyMathHelper.normalizeCSPlayerHeadYawDegrees(playerYaw);
+
+                double output = 100 * pvx * Math.cos(normalizedPlayerYaw) ;//+ pvz * Math.sin(normalizedPlayerYaw);
+
+                this.setYaw((float) (this.getYaw() + output));
+
+                Vec3d droneVelocity = new Vec3d(0,0,0);
+
+
+                //this.setVelocity(playerVelocity);
+
+
+
+
+                print(4, "Get player movement: "+playerVelocity);
+                print(5, txtIsClient+"Get player yaw: "+normalizedPlayerYaw);
+
+            }
+            //print(3, "Get player passenger: "+this.getFirstPassenger());
+
+
+
+        this.move(MovementType.SELF,this.getVelocity());
 
     }
 
@@ -66,6 +107,7 @@ public class TestDroneEntity extends Entity {
             return ActionResult.PASS;
         } else if (0F < 60.0F) {
             if (!this.getWorld().isClient) {
+
                 return player.startRiding(this) ? ActionResult.CONSUME : ActionResult.PASS;
             } else {
                 return ActionResult.SUCCESS;
@@ -97,5 +139,29 @@ public class TestDroneEntity extends Entity {
         return 1;
     }
 
+    @Nullable
+    public LivingEntity getControllingPassenger() {
+        Entity firstPassenger = this.getFirstPassenger();
+        LivingEntity controllingPassenger;
+        if (firstPassenger instanceof LivingEntity livingEntity) {
+            controllingPassenger = livingEntity;
+        } else {
+            controllingPassenger = super.getControllingPassenger();
+        }
 
+        return controllingPassenger;
+    }
+
+
+    //should be on a interface or abstract class
+    public void move(int action) {
+        //System.out.printf("Moving %d \n", this.getBlockY());
+        //System.out.println(this.getWorld().isClient +" "+this.getId()+" "+ TARGET_Y);
+        float dy = dataTracker.get(TARGET_Y);
+        if (action == 1){
+            dataTracker.set(TARGET_Y, ++dy);
+        }else if(action == 0 && !this.isOnGround()){
+            dataTracker.set(TARGET_Y, --dy);
+        }
+    }
 }
