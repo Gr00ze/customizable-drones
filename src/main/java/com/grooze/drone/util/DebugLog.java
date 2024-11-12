@@ -49,7 +49,11 @@ public class DebugLog {
             System.out.println(message);
 
         }
+    }
 
+    public static void print(int id, String message, boolean isClient){
+        String side = isClient? "Client ": "Server ";
+        print(id, side+" "+ message);
 
 
     }

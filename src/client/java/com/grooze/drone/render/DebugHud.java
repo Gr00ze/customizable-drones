@@ -4,17 +4,21 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 
 public class DebugHud {
-    public static String[] logMessages = {"Ciao","Tu"};
-    private static final int[] logTimers = {200,200,0,0,0};
 
-    public static void addLogMessage(String message) {
+    private static final int  BUFFER_SIZE = 4;
+    public static String[] logMessages = new String[BUFFER_SIZE];
+    private static final int[] logTimers = new int [BUFFER_SIZE];
+
+    public static void addLogMessage(Object message) {
+
         // Scorri i log per fare spazio al nuovo log
         for (int i = logMessages.length - 1; i > 0; i--) {
             logMessages[i] = logMessages[i - 1];
             logTimers[i] = logTimers[i - 1]; // Sposta anche i timer
         }
-        logMessages[0] = message; // Aggiungi il nuovo log
-        logTimers[0] = 200; // Imposta un timer di 200 tick (~10 secondi)
+        logMessages[0] = message.toString(); // Aggiungi il nuovo log
+        logTimers[0] = 20000; // Imposta un timer di 200 tick (~10 secondi)
+
     }
     public static void init(){
 
