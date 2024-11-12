@@ -8,6 +8,6 @@ public class MyMathHelper {
      * So this method is useful to have the same variable on both C & S
      **/
     public static double normalizeCSPlayerHeadYawDegrees(double degrees){
-        return (degrees + 180) % 360 - 180;
+        return ((degrees + 180) % 360 + 360) % 360 - 180;
     }
 }
