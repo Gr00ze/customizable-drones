@@ -18,7 +18,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 
-public class DroneEntity extends BoatEntity {
+public class DroneEntity extends BoatEntity implements Movable{
     public boolean on = false;
     float sleepY;
     public static final TrackedData<Float> TARGET_Y = DataTracker.registerData(DroneEntity.class, TrackedDataHandlerRegistry.FLOAT);

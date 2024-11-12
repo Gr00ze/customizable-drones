@@ -1,6 +1,7 @@
 package com.grooze.drone;
 
 import com.grooze.drone.event.ClientEvents;
+import com.grooze.drone.event.ClientNetwork;
 import com.grooze.drone.event.KeyBinds;
 import com.grooze.drone.render.DebugHud;
 import com.grooze.drone.render.DroneEntityModel;
@@ -25,7 +26,7 @@ public class CustomizableDronesClient implements ClientModInitializer {
 		EntityModelLayerRegistry.registerModelLayer(DRONE_LAYER, DroneEntityModel::getTexturedModelData);
 		KeyBinds.init();
 		ClientEvents.registerEvents();
-
+		ClientNetwork.init();
 		DebugHud.init();
 
 
